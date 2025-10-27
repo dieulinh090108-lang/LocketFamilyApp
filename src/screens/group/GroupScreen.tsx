@@ -3,11 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, FlatList, Alert, ImageSourceP
 import Share from 'react-native-share';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@react-native-vector-icons/ionicons';
+import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import PostCard from '../../components/group/PostCard';
 import QRShareModal from '../../components/group/QRShareModal';
 import UserPostInput from '../../components/group/UserPostInput';
 import ImageDetailModal from '../../components/group/ImageDetailModal';
 import { images } from '../../assets';
+import { SCREEN_HEIGHT } from '../../utils';
+import { COLORS } from '../../constants';
 
 /**
  * GroupScreen - Main Timeline Screen
@@ -187,7 +190,7 @@ const MOCK_POSTS: PostItem[] = [
   },
 ];
 
-const GroupScreen = () => {
+const GroupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [user, setUser] = useState<{ name: string; avatar: string } | null>(null);
   const [qrVisible, setQrVisible] = useState(false);
   const [posts, setPosts] = useState<PostItem[]>(MOCK_POSTS);
@@ -209,6 +212,10 @@ const GroupScreen = () => {
     };
     fetchUser();
   }, []);
+
+  const handleTestMemory = useCallback(() => {
+    navigation.navigate('FaceTest');
+  }, [navigation]);
 
   // MEMOIZED EVENT HANDLERS FOR PERFORMANCE
   const handleShare = useCallback(() => setQrVisible(true), []);
@@ -313,6 +320,11 @@ const GroupScreen = () => {
         />
       </View>
 
+      {/* Nút test trí nhớ */}
+      <TouchableOpacity style={styles.testMemoryBtn} onPress={handleTestMemory}>
+        <MaterialDesignIcons name="brain" size={28} color="#fff" />
+      </TouchableOpacity>
+
       {/* Modal QR code */}
       <QRShareModal
         visible={qrVisible}
@@ -360,6 +372,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
+  },
+  testMemoryBtn: {
+    position: 'absolute',
+    bottom: SCREEN_HEIGHT * 0.05,
+    right: 20,
+    backgroundColor: COLORS.secondary,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 30,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 5,
   },
 });
 

@@ -25,6 +25,7 @@ export const COLORS = {
   error: '#FF3B30',
   warning: '#FF9500',
   info: '#007AFF',
+  loading: '#5856D6',
 
   // Background colors
   background: '#F2F2F7',
