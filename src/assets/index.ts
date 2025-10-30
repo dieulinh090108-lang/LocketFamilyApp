@@ -5,6 +5,7 @@ export const images = {
   chiThuy2: require('./images/tranThuyVan.jpg'),
   leQuangTang: require('./images/leQuangTang.jpg'),
   leVietBach: require('./images/leVietBach.jpg'),
+  nguyenDinhDong: require('./images/nguyenDinhDong.jpg'),
   giaDinhDieuLinh: require('./images/4nguoiAnLau.jpg'),
   giaDinhBacHoa: require('./images/4nguoiTrongTuyet.jpg'),
   diDuLich: require('./images/4nguoi.jpg'),
